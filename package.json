@@ -1,0 +1,11 @@
+{
+  "name": "app42",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^5.0.0-alpha.2",
+    "morgan": "^1.7.0"
+  }
+}
