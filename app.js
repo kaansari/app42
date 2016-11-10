@@ -3,8 +3,13 @@ var path = require("path");
 var fs = require("fs");
 var morgan = require("morgan");
 
+//custom require
+
+var apiRouter = require("./routes/api_router");
 
 var app = express();
+
+
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
@@ -13,17 +18,12 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 app.use(morgan('combined', {stream: accessLogStream}));
 
 
-app.use(function (req, res, next) {
 
-	console.log("Request IP :" + req.url);
-	console.log("Request date:" + new Date());
-    next();
-});
 
 var staticPath = path.join(__dirname, "static");
 app.use(express.static(staticPath));
 
-
+app.use("/api", apiRouter);
     
    
 app.use(function (req,res){
